@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JFrog, Chainguard, and the New Rules of Software Delivery in the AI Era — TwoCoins.ca</title>
+<meta name="description" content="Why JFrog and Chainguard have become essential infrastructure for DevSecOps: securing the software supply chain when AI is writing code faster than humans can review it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1E33; --navy-light: #1B2F4B; --accent: #2E9BDA; --accent-dark: #1E7AB5;
+    --gold: #D9A441; --bg: #F7F9FB; --ink: #1A2433; --muted: #5A6B80; --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 1.05rem; line-height: 1.75; }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(15,30,51,.96); backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 68rem; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; padding: 1rem 1.5rem; }
+  .logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: #fff;
+    font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 1.75rem; }
+  .nav-links a { color: #C9D6E3; text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .nav-links a:hover { color: #fff; }
+  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #243B5C 100%);
+    color: #fff; padding: 4rem 1.5rem 3.5rem; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; right: -6rem; top: -6rem; width: 22rem; height: 22rem;
+    border-radius: 50%; background: radial-gradient(circle, rgba(46,155,218,.25), transparent 70%); }
+  .hero-inner { max-width: 68rem; margin: 0 auto; position: relative; }
+  .eyebrow { display: inline-block; font-size: .85rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .14em; color: var(--gold); margin-bottom: 1rem; }
+  h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; font-weight: 800; letter-spacing: -.02em;
+    margin: 0 0 1rem; max-width: 46rem; }
+  h1 .hl { color: var(--accent); }
+  .byline { color: #8FA3B8; font-size: .95rem; }
+  .article { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+  .article h2 { font-size: 1.6rem; font-weight: 700; letter-spacing: -.01em; margin: 2.75rem 0 1rem;
+    padding-top: .5rem; }
+  .article h3 { font-size: 1.2rem; font-weight: 700; margin: 2rem 0 .75rem; }
+  .article p { margin: 0 0 1.25rem; }
+  .article ul { margin: 0 0 1.25rem; padding-left: 1.5rem; }
+  .article li { margin-bottom: .5rem; }
+  .article a { color: var(--accent-dark); }
+  .lead { font-size: 1.25rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem !important; }
+  .callout { background: #fff; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0;
+    padding: 1.25rem 1.5rem; margin: 2rem 0; box-shadow: 0 2px 10px rgba(15,30,51,.06); }
+  .callout p { margin: 0; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .stat { background: #fff; border-radius: 10px; padding: 1.25rem 1rem; text-align: center;
+    box-shadow: 0 2px 10px rgba(15,30,51,.06); }
+  .stat b { display: block; font-size: 1.7rem; color: var(--navy); }
+  .stat span { font-size: .85rem; color: var(--muted); }
+  footer { background: var(--navy); color: #8FA3B8; text-align: center; padding: 2rem 1.5rem; font-size: .9rem; }
+  .draft-banner { display: none; }
+  @media (max-width: 48rem) { .nav-links { display: none; } .stat-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="coinA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F0CE6B"/><stop offset="1" stop-color="#C08A2D"/>
+          </linearGradient>
+          <linearGradient id="coinB" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E8C15A"/><stop offset="1" stop-color="#A87622"/>
+          </linearGradient>
+        </defs>
+        <circle cx="14" cy="19" r="10.5" fill="url(#coinA)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="14" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <circle cx="24" cy="19" r="10.5" fill="url(#coinB)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="24" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <path d="M22.5 15.5l1.5 1.5 3-3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+      </svg>
+      TwoCoins.ca
+    </a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="location.html">Location</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Blog · DevSecOps</span>
+    <h1>JFrog, Chainguard, and the <span class="hl">new rules</span> of software delivery in the AI era</h1>
+    <p class="byline">October 2026 · TwoCoins.ca</p>
+  </div>
+</header>
+
+<article class="article">
+
+<p class="lead">AI is writing code faster than any human team ever could. The uncomfortable question nobody asked for: who — or what — is reviewing the supply chain it drags along with it? Two platforms, JFrog and Chainguard, have emerged as the answer to that question. Here's why they matter.</p>
+
+<h2>The problem: velocity without custody</h2>
+
+<p>Modern applications are assembled far more than they are written. A typical cloud-native service pulls in hundreds of open-source dependencies, a handful of base container images, language runtimes, and increasingly, AI models and agent plugins. Each one is a trust decision — and most of them were made implicitly, years ago, by someone who has since left the company.</p>
+
+<p>Attackers noticed. Software supply chain attacks are now counted among the top critical security threats where adversaries hold the advantage. JFrog's 2026 State of the Union report on supply chain security found <strong>177,000 new malicious packages</strong> detected, with malicious npm packages surging <strong>451% year-over-year</strong>. And the target has moved: attackers are going after AI models, agentic developer tools, and the workflows themselves — not just finished applications.</p>
+
+<p>AI coding assistants made this dramatically worse. When an agent generates code, it also generates dependencies — imports, packages, Dockerfiles — at machine speed. A developer might review the logic; almost nobody reviews the provenance of every transitive dependency the agent chose. The result is a software factory running at unprecedented velocity with a supply chain nobody fully inventoried.</p>
+
+<div class="stat-row">
+  <div class="stat"><b>177K</b><span>new malicious packages detected</span></div>
+  <div class="stat"><b>+451%</b><span>malicious npm packages, YoY</span></div>
+  <div class="stat"><b>&lt;20%</b><span>of orgs had deployed AI agents — most expect to within 2 years</span></div>
+</div>
+
+<p>This is the context in which JFrog and Chainguard stopped being "nice to have" tooling and became infrastructure. They attack the same problem from opposite ends: <strong>JFrog governs what flows through your factory; Chainguard ensures what enters it is clean to begin with.</strong></p>
+
+<h2>JFrog: the system of record for everything you ship</h2>
+
+<p>JFrog's core insight is simple: you cannot secure what you cannot see, and you cannot see artifacts that are scattered across a dozen registries, file shares, and "temporary" S3 buckets. The JFrog Software Supply Chain Platform — built around Artifactory — acts as the single source of truth for every binary artifact in the organization: containers, Helm charts, npm/Maven/PyPI packages, and now AI models.</p>
+
+<p>What makes it a DevSecOps pillar rather than just a fancy file server:</p>
+
+<ul>
+  <li><strong>Curation at the gate.</strong> JFrog Curation blocks malicious or policy-violating packages <em>before</em> developers can pull them — scanning at the moment of request, not after the code is already built.</li>
+  <li><strong>Xray: continuous, binary-level scanning.</strong> Every artifact is scanned for vulnerabilities, license issues, and exposed secrets, and re-scanned as new threat intelligence arrives — so a CVE disclosed on Tuesday is flagged in artifacts built last month.</li>
+  <li><strong>Signed release bundles and SBOMs.</strong> Immutable, cryptographically signed bundles with full software bills of materials give you a verifiable chain of custody from build to production — the receipts auditors and regulators increasingly demand.</li>
+  <li><strong>AI asset governance.</strong> At swampUP 2026, JFrog unveiled AgentSecOps capabilities: scanning AI models and agent plugins, ensuring AI coding agents only consume trusted artifacts, and governing the agentic workflows that now write production code. This directly addresses the governance gap where most organizations still source AI models from untrusted repositories.</li>
+</ul>
+
+<p>In June 2026, JFrog was named a Leader in the first-ever Gartner Magic Quadrant for Software Supply Chain Security — recognition that the platform approach (security embedded in the delivery flow, not bolted on beside it) is winning.</p>
+
+<h2>Chainguard: start clean instead of triaging dirty</h2>
+
+<p>If JFrog is the customs agency, Chainguard is the decision to stop importing contraband in the first place. Chainguard's breakthrough idea: most container vulnerabilities don't come from your code — they come from the base image. A typical Debian or Alpine base ships hundreds of packages your application never uses, each one a potential CVE. Chainguard builds minimal, hardened images (on their Wolfi Linux distribution) containing only what's needed, rebuilt daily, with <strong>zero known CVEs</strong>.</p>
+
+<p>Why this is a strategic shift, not just a product choice:</p>
+
+<ul>
+  <li><strong>Eliminate, don't triage.</strong> The industry's default posture has been "scan everything, then argue about which CVEs matter." Chainguard inverts it: start from zero and keep it there. One widely cited ranking of 2026 supply chain tools put Chainguard at #1 for exactly this "eliminate-first" strategy.</li>
+  <li><strong>Provenance by default.</strong> Every image ships signed, with an SBOM and SLSA provenance — cryptographic proof of where it came from and how it was built. No extra pipeline steps, no afterthought.</li>
+  <li><strong>Continuous rebuilds with an SLA.</strong> Images are rebuilt daily, and Chainguard commits contractually to remediating known exploited vulnerabilities within 24 hours of an upstream fix. Your base image is never more than a day stale.</li>
+  <li><strong>Chainguard Libraries.</strong> The same philosophy extended to language dependencies — hardened, vetted open-source libraries as a safe source for the packages your applications consume.</li>
+</ul>
+
+<div class="callout">
+<p><strong>The scanner finds nothing because there's nothing to find.</strong> Teams that migrate to Chainguard bases routinely watch vulnerability backlogs collapse — not because they fixed hundreds of CVEs, but because the CVEs were never in the image to begin with.</p>
+</div>
+
+<h2>Why they matter <em>together</em></h2>
+
+<p>JFrog and Chainguard are complementary, and the combination is where modern DevSecOps gets its teeth:</p>
+
+<ul>
+  <li><strong>Chainguard</strong> minimizes what enters the pipeline — clean base images, hardened libraries, signed provenance from the start.</li>
+  <li><strong>JFrog</strong> governs everything that flows through it — curation, continuous scanning, signed release bundles, and distribution with a full audit trail.</li>
+</ul>
+
+<p>Together they implement a genuine <strong>zero-trust software supply chain</strong>: never trust an artifact by default, always verify its origin, contents, and integrity — at ingestion, at build, and at deploy. That maps directly onto the zero-trust security architecture principles we build around at TwoCoins.ca: identity and provenance for every component, policy enforcement at every boundary, and no implicit trust anywhere in the chain.</p>
+
+<h2>Why the AI era makes this urgent</h2>
+
+<p>Three forces are converging:</p>
+
+<p><strong>1. AI writes dependencies, not just code.</strong> Coding agents choose packages, base images, and model artifacts autonomously. Without curation at the registry (JFrog) and clean starting inputs (Chainguard), every agent prompt is a potential supply chain incident.</p>
+
+<p><strong>2. AI models are supply chain artifacts.</strong> A model file is a binary blob from the internet that you execute with broad permissions. It needs the same custody — scanning, signing, provenance — as any container image. JFrog's move to treat AI assets as first-class artifacts is the industry catching up to this reality.</p>
+
+<p><strong>3. Attackers use AI too.</strong> The "CVE blitz" — automated discovery and exploitation of vulnerabilities at machine speed — means the window between disclosure and exploitation keeps shrinking. Daily-rebuilt images and continuous re-scanning aren't paranoia; they're matching the adversary's tempo.</p>
+
+<h2>The bottom line</h2>
+
+<p>DevSecOps in the AI era isn't about adding more scanners to the pipeline. It's about restructuring the pipeline so that trust is <strong>produced</strong> at every stage rather than hoped for at the end. JFrog gives you custody and governance over everything you build and ship. Chainguard gives you inputs that start clean and stay clean. Adopt both, and your software factory stops being the weakest link in your security posture — and starts being the proof of it.</p>
+
+<p><em>TwoCoins.ca helps organizations design secure software delivery platforms — from artifact strategy and supply chain hardening to zero-trust architecture. <a href="index.html#contact">Start a conversation</a>.</em></p>
+
+</article>
+
+<footer>
+  © 2026 TwoCoins.ca · Cloud · AI · Zero-Trust Security
+</footer>
+
+</body>
+</html>
