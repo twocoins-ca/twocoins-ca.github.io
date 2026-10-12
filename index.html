@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TwoCoins — Cloud, AI & Zero-Trust Security Consulting</title>
-<meta name="description" content="TwoCoins provides expert consulting in cloud solution architecture, ML/AI, and zero-trust security architecture.">
+<title>TwoCoins.ca — Cloud, AI & Zero-Trust Security Consulting</title>
+<meta name="description" content="TwoCoins.ca provides expert consulting in cloud solution architecture, ML/AI, and zero-trust security architecture.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -42,13 +42,8 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 1rem 1.5rem;
   }
-  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.25rem; }
-  .logo-mark {
-    width: 2rem; height: 2rem; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), #B07E24);
-    display: grid; place-items: center; color: var(--navy);
-    font-weight: 800; font-size: 1rem;
-  }
+  .logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; }
+  .logo svg { display: block; }
   .nav-links { display: flex; gap: 1.75rem; }
   .nav-links a { color: #C9D6E3; text-decoration: none; font-weight: 500; font-size: .95rem; }
   .nav-links a:hover { color: #fff; }
@@ -139,7 +134,26 @@
 
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#"><span class="logo-mark">2</span> TwoCoins</a>
+    <a class="logo" href="#">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="coinA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F0CE6B"/>
+            <stop offset="1" stop-color="#C08A2D"/>
+          </linearGradient>
+          <linearGradient id="coinB" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E8C15A"/>
+            <stop offset="1" stop-color="#A87622"/>
+          </linearGradient>
+        </defs>
+        <circle cx="14" cy="19" r="10.5" fill="url(#coinA)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="14" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <circle cx="24" cy="19" r="10.5" fill="url(#coinB)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="24" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <path d="M22.5 15.5l1.5 1.5 3-3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+      </svg>
+      TwoCoins.ca
+    </a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#about">About</a>
@@ -208,8 +222,8 @@
 <div class="about" id="about">
   <div class="about-inner">
     <div>
-      <h2>Why TwoCoins</h2>
-      <p>Technology decisions compound. The architecture you choose today determines your velocity, your costs, and your risk for years. TwoCoins exists to get those decisions right — combining deep hands-on engineering with the architectural judgment that only comes from shipping real systems.</p>
+      <h2>Why TwoCoins.ca</h2>
+      <p>Technology decisions compound. The architecture you choose today determines your velocity, your costs, and your risk for years. TwoCoins.ca exists to get those decisions right — combining deep hands-on engineering with the architectural judgment that only comes from shipping real systems.</p>
       <p>Whether you're migrating to the cloud, putting your first ML model into production, or rebuilding security around zero-trust, you get senior expertise focused on outcomes, not billable hours.</p>
       <div class="stats">
         <div class="stat"><b>3</b><span>Core disciplines</span></div>
@@ -227,7 +241,7 @@
 </section>
 
 <footer>
-  © 2026 TwoCoins · Cloud · AI · Zero-Trust Security
+  © 2026 TwoCoins.ca · Cloud · AI · Zero-Trust Security
 </footer>
 
 </body>
