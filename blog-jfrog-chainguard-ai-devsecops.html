@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JFrog, Chainguard, and the New Rules of Software Delivery in the AI Era — TwoCoins.ca</title>
-<meta name="description" content="Why JFrog and Chainguard have become essential infrastructure for DevSecOps: securing the software supply chain when AI is writing code faster than humans can review it.">
+<title>JFrog, Chainguard, GitOps, and the New Rules of Software Delivery in the AI Era — TwoCoins.ca</title>
+<meta name="description" content="Why JFrog, Chainguard, and GitOps have become essential infrastructure for DevSecOps: securing the software supply chain when AI is writing code faster than humans can review it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -92,15 +92,17 @@
 
 <header class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">Blog · DevSecOps</span>
-    <h1>JFrog, Chainguard, and the <span class="hl">new rules</span> of software delivery in the AI era</h1>
+    <span class="eyebrow">Blog · DevSecOps · Part 1 of a series</span>
+    <h1>JFrog, Chainguard, GitOps, and the <span class="hl">new rules</span> of software delivery in the AI era</h1>
     <p class="byline">October 2026 · TwoCoins.ca</p>
   </div>
 </header>
 
 <article class="article">
 
-<p class="lead">AI is writing code faster than any human team ever could. The uncomfortable question nobody asked for: who — or what — is reviewing the supply chain it drags along with it? Two platforms, JFrog and Chainguard, have emerged as the answer to that question. Here's why they matter.</p>
+<p class="lead">AI is writing code faster than any human team ever could. The uncomfortable question nobody asked for: who — or what — is reviewing the supply chain it drags along with it? Three pillars — JFrog, Chainguard, and GitOps — have emerged as the answer to that question. Here's why they matter, and why they matter <em>together</em>.</p>
+
+<p><em>This is the first post in an ongoing series on modern DevSecOps and software delivery in the AI era. More to come.</em></p>
 
 <h2>The problem: velocity without custody</h2>
 
@@ -116,7 +118,7 @@
   <div class="stat"><b>&lt;20%</b><span>of orgs had deployed AI agents — most expect to within 2 years</span></div>
 </div>
 
-<p>This is the context in which JFrog and Chainguard stopped being "nice to have" tooling and became infrastructure. They attack the same problem from opposite ends: <strong>JFrog governs what flows through your factory; Chainguard ensures what enters it is clean to begin with.</strong></p>
+<p>This is the context in which JFrog, Chainguard, and GitOps stopped being "nice to have" tooling and became infrastructure. They attack the same problem from three directions: <strong>Chainguard ensures what enters your factory is clean to begin with; JFrog governs what flows through it; GitOps guarantees what reaches production is exactly what was reviewed and approved.</strong></p>
 
 <h2>JFrog: the system of record for everything you ship</h2>
 
@@ -150,13 +152,31 @@
 <p><strong>The scanner finds nothing because there's nothing to find.</strong> Teams that migrate to Chainguard bases routinely watch vulnerability backlogs collapse — not because they fixed hundreds of CVEs, but because the CVEs were never in the image to begin with.</p>
 </div>
 
+<h2>GitOps: what reaches production is exactly what was approved</h2>
+
+<p>JFrog and Chainguard secure the <em>supply</em> side — the artifacts. GitOps secures the <em>delivery</em> side: the path from artifact to running system. The principle is deceptively simple: the desired state of your infrastructure and applications lives declaratively in Git, and an automated agent (Argo CD, Flux, and their successors) continuously reconciles the live environment against it.</p>
+
+<p>Why this is a DevSecOps pillar, not just a deployment convenience:</p>
+
+<ul>
+  <li><strong>No drift, no surprises.</strong> If someone — or some compromised process — changes production out of band, the GitOps agent detects the drift and reverts it. The running system can never silently diverge from the reviewed, approved definition.</li>
+  <li><strong>Every change is a reviewed commit.</strong> Deployments become pull requests: diffable, attributable, and subject to the same code review, policy checks, and approvals as application code. In the AI era, where agents can generate infrastructure changes too, this is the control plane that keeps machine-speed changes human-governed.</li>
+  <li><strong>Rollback is a revert.</strong> When an incident hits, recovery is <code>git revert</code> — fast, deterministic, and auditable, instead of a frantic manual scramble.</li>
+  <li><strong>Policy as code, enforced at the gate.</strong> Admission policies — signed images only, SBOMs required, no privileged containers — are declared in Git and enforced automatically before anything reaches the cluster. The policies JFrog and Chainguard make <em>possible</em> are the policies GitOps makes <em>mandatory</em>.</li>
+</ul>
+
+<div class="callout">
+<p><strong>Git is the audit trail the auditor actually wants.</strong> "Show me exactly what was running in production on March 3rd, who approved it, and what changed since" — with GitOps, that's a <code>git log</code>, not a forensic investigation.</p>
+</div>
+
 <h2>Why they matter <em>together</em></h2>
 
-<p>JFrog and Chainguard are complementary, and the combination is where modern DevSecOps gets its teeth:</p>
+<p>JFrog, Chainguard, and GitOps are complementary, and the combination is where modern DevSecOps gets its teeth:</p>
 
 <ul>
   <li><strong>Chainguard</strong> minimizes what enters the pipeline — clean base images, hardened libraries, signed provenance from the start.</li>
   <li><strong>JFrog</strong> governs everything that flows through it — curation, continuous scanning, signed release bundles, and distribution with a full audit trail.</li>
+  <li><strong>GitOps</strong> guarantees what reaches production matches what was approved — declarative desired state in Git, continuous reconciliation, automatic drift correction, and policy enforcement at deploy time.</li>
 </ul>
 
 <p>Together they implement a genuine <strong>zero-trust software supply chain</strong>: never trust an artifact by default, always verify its origin, contents, and integrity — at ingestion, at build, and at deploy. That maps directly onto the zero-trust security architecture principles we build around at TwoCoins.ca: identity and provenance for every component, policy enforcement at every boundary, and no implicit trust anywhere in the chain.</p>
@@ -165,7 +185,7 @@
 
 <p>Three forces are converging:</p>
 
-<p><strong>1. AI writes dependencies, not just code.</strong> Coding agents choose packages, base images, and model artifacts autonomously. Without curation at the registry (JFrog) and clean starting inputs (Chainguard), every agent prompt is a potential supply chain incident.</p>
+<p><strong>1. AI writes dependencies, not just code.</strong> Coding agents choose packages, base images, and model artifacts autonomously — and increasingly generate infrastructure changes too. Without curation at the registry (JFrog), clean starting inputs (Chainguard), and Git-reviewed deployments (GitOps), every agent prompt is a potential supply chain incident.</p>
 
 <p><strong>2. AI models are supply chain artifacts.</strong> A model file is a binary blob from the internet that you execute with broad permissions. It needs the same custody — scanning, signing, provenance — as any container image. JFrog's move to treat AI assets as first-class artifacts is the industry catching up to this reality.</p>
 
@@ -173,7 +193,9 @@
 
 <h2>The bottom line</h2>
 
-<p>DevSecOps in the AI era isn't about adding more scanners to the pipeline. It's about restructuring the pipeline so that trust is <strong>produced</strong> at every stage rather than hoped for at the end. JFrog gives you custody and governance over everything you build and ship. Chainguard gives you inputs that start clean and stay clean. Adopt both, and your software factory stops being the weakest link in your security posture — and starts being the proof of it.</p>
+<p>DevSecOps in the AI era isn't about adding more scanners to the pipeline. It's about restructuring the pipeline so that trust is <strong>produced</strong> at every stage rather than hoped for at the end. Chainguard gives you inputs that start clean and stay clean. JFrog gives you custody and governance over everything you build and ship. GitOps guarantees that what runs in production is exactly what was reviewed and approved — nothing more, nothing less. Adopt all three, and your software factory stops being the weakest link in your security posture — and starts being the proof of it.</p>
+
+<p><em>This was part 1 of our series on modern DevSecOps in the AI era — more posts coming soon.</em></p>
 
 <p><em>TwoCoins.ca helps organizations design secure software delivery platforms — from artifact strategy and supply chain hardening to zero-trust architecture. <a href="index.html#contact">Start a conversation</a>.</em></p>
 
