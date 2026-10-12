@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TwoCoins — Cloud, AI & Zero-Trust Security Consulting</title>
+<meta name="description" content="TwoCoins provides expert consulting in cloud solution architecture, ML/AI, and zero-trust security architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1E33;
+    --navy-light: #1B2F4B;
+    --accent: #2E9BDA;
+    --accent-dark: #1E7AB5;
+    --gold: #D9A441;
+    --bg: #F7F9FB;
+    --ink: #1A2433;
+    --muted: #5A6B80;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15,30,51,.96);
+    backdrop-filter: blur(8px);
+  }
+  .nav-inner {
+    max-width: 68rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.25rem; }
+  .logo-mark {
+    width: 2rem; height: 2rem; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #B07E24);
+    display: grid; place-items: center; color: var(--navy);
+    font-weight: 800; font-size: 1rem;
+  }
+  .nav-links { display: flex; gap: 1.75rem; }
+  .nav-links a { color: #C9D6E3; text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .nav-links a:hover { color: #fff; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #243B5C 100%);
+    color: #fff;
+    padding: 5rem 1.5rem 4.5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -6rem; top: -6rem;
+    width: 22rem; height: 22rem; border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,155,218,.25), transparent 70%);
+  }
+  .hero-inner { max-width: 68rem; margin: 0 auto; position: relative; }
+  .eyebrow {
+    display: inline-block; font-size: .85rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .14em; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    line-height: 1.1; font-weight: 800; letter-spacing: -.02em;
+    margin: 0 0 1.25rem; max-width: 44rem;
+  }
+  h1 .hl { color: var(--accent); }
+  .hero p.lede { font-size: 1.2rem; color: #C9D6E3; max-width: 42rem; margin: 0 0 2rem; }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    padding: .8rem 1.75rem; border-radius: 8px; font-size: 1rem;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); }
+
+  /* Services */
+  .section { max-width: 68rem; margin: 0 auto; padding: 4.5rem 1.5rem; }
+  .section-head { text-align: center; margin-bottom: 3rem; }
+  .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 .75rem; letter-spacing: -.01em; }
+  .section-head p { color: var(--muted); max-width: 38rem; margin: 0 auto; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem; }
+  .card {
+    background: #fff; border-radius: 12px; padding: 2rem 1.75rem;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 2px 14px rgba(15,30,51,.07);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(15,30,51,.12); }
+  .card-icon {
+    width: 3rem; height: 3rem; border-radius: 10px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: grid; place-items: center; margin-bottom: 1.25rem;
+  }
+  .card h3 { margin: 0 0 .6rem; font-size: 1.25rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .98rem; }
+  .card ul { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: .95rem; }
+  .card li { margin-bottom: .35rem; }
+
+  /* About */
+  .about { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .about-inner { max-width: 68rem; margin: 0 auto; padding: 4.5rem 1.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  .about h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 1rem; }
+  .about p { color: var(--muted); margin: 0 0 1.25rem; max-width: 44rem; }
+  .stats { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .stat b { display: block; font-size: 2rem; color: var(--navy); }
+  .stat span { color: var(--muted); font-size: .95rem; }
+
+  /* Contact */
+  .contact { text-align: center; }
+  .contact h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 1rem; }
+  .contact p { color: var(--muted); max-width: 36rem; margin: 0 auto 2rem; }
+
+  footer { background: var(--navy); color: #8FA3B8; text-align: center; padding: 2rem 1.5rem; font-size: .9rem; }
+  footer a { color: #C9D6E3; }
+
+  @media (max-width: 40rem) {
+    .nav-links { display: none; }
+    .hero { padding: 3.5rem 1.5rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#"><span class="logo-mark">2</span> TwoCoins</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Consulting · Architecture · Delivery</span>
+    <h1>Cloud, AI &amp; <span class="hl">Zero-Trust Security</span> — architected right.</h1>
+    <p class="lede">TwoCoins helps organizations design, build, and secure modern platforms — from cloud foundations to production ML/AI, all on zero-trust principles.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Start a conversation</a>
+      <a class="btn btn-ghost" href="#services">Explore services</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="services">
+  <div class="section-head">
+    <h2>Core consulting services</h2>
+    <p>Senior-level architecture across the three pillars modern organizations depend on.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .4-8.98A6 6 0 0 0 6.2 8.6 4.8 4.8 0 0 0 7 19h10.5z"/></svg>
+      </div>
+      <h3>Cloud Solution Architecture</h3>
+      <p>Design and modernize cloud platforms that are scalable, cost-efficient, and built to last.</p>
+      <ul>
+        <li>Cloud strategy &amp; landing zones</li>
+        <li>Migration &amp; modernization</li>
+        <li>DevOps, IaC &amp; platform engineering</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+      </div>
+      <h3>ML / AI</h3>
+      <p>Move from AI experiments to production systems that deliver measurable business value.</p>
+      <ul>
+        <li>AI strategy &amp; use-case design</li>
+        <li>MLOps &amp; production pipelines</li>
+        <li>LLM &amp; generative AI solutions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.4-8 11.3-4.6-1.9-8-6.3-8-11.3V5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h3>Zero-Trust Security Architecture</h3>
+      <p>Never trust, always verify — security woven into every layer of your architecture.</p>
+      <ul>
+        <li>Zero-trust roadmaps &amp; assessments</li>
+        <li>Identity, access &amp; segmentation design</li>
+        <li>Cloud &amp; AI security hardening</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>Why TwoCoins</h2>
+      <p>Technology decisions compound. The architecture you choose today determines your velocity, your costs, and your risk for years. TwoCoins exists to get those decisions right — combining deep hands-on engineering with the architectural judgment that only comes from shipping real systems.</p>
+      <p>Whether you're migrating to the cloud, putting your first ML model into production, or rebuilding security around zero-trust, you get senior expertise focused on outcomes, not billable hours.</p>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>Core disciplines</span></div>
+        <div class="stat"><b>1</b><span>Accountable architect</span></div>
+        <div class="stat"><b>0</b><span>Compromises on security</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section contact" id="contact">
+  <h2>Let's talk about your architecture</h2>
+  <p>Tell us where you're headed — we'll help you design the fastest secure path to get there.</p>
+  <a class="btn btn-primary" href="mailto:louie.kwan@twocoins.ca">louie.kwan@twocoins.ca</a>
+</section>
+
+<footer>
+  © 2026 TwoCoins · Cloud · AI · Zero-Trust Security
+</footer>
+
+</body>
+</html>
