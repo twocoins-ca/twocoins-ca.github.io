@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Location — TwoCoins.ca</title>
+<meta name="description" content="TwoCoins.ca is based in Ottawa, Ontario, Canada — serving clients across Canada and remotely worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1E33;
+    --navy-light: #1B2F4B;
+    --accent: #2E9BDA;
+    --accent-dark: #1E7AB5;
+    --gold: #D9A441;
+    --bg: #F7F9FB;
+    --ink: #1A2433;
+    --muted: #5A6B80;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15,30,51,.96);
+    backdrop-filter: blur(8px);
+  }
+  .nav-inner {
+    max-width: 68rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+  .logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; }
+  .logo svg { display: block; }
+  .nav-links { display: flex; gap: 1.75rem; }
+  .nav-links a { color: #C9D6E3; text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; }
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #243B5C 100%);
+    color: #fff;
+    padding: 4rem 1.5rem 3.5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -6rem; top: -6rem;
+    width: 22rem; height: 22rem; border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,155,218,.25), transparent 70%);
+  }
+  .hero-inner { max-width: 68rem; margin: 0 auto; position: relative; }
+  .eyebrow {
+    display: inline-block; font-size: .85rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .14em; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.1; font-weight: 800; letter-spacing: -.02em;
+    margin: 0 0 1rem; max-width: 44rem;
+  }
+  h1 .hl { color: var(--accent); }
+  .hero p.lede { font-size: 1.15rem; color: #C9D6E3; max-width: 42rem; margin: 0; }
+  .section { max-width: 68rem; margin: 0 auto; padding: 4rem 1.5rem; }
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;
+  }
+  .location-card {
+    background: #fff; border-radius: 12px; padding: 2.25rem 2rem;
+    box-shadow: 0 2px 14px rgba(15,30,51,.07);
+    border-top: 4px solid var(--gold);
+  }
+  .location-card h2 { margin: 0 0 .75rem; font-size: 1.4rem; }
+  .location-card p { color: var(--muted); margin: 0 0 1rem; }
+  .location-card p:last-child { margin-bottom: 0; }
+  .address {
+    font-size: 1.25rem; font-weight: 600; color: var(--navy); line-height: 1.6;
+  }
+  .map-wrap {
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 14px rgba(15,30,51,.07);
+    border: 1px solid var(--line);
+  }
+  .map-wrap iframe { display: block; width: 100%; height: 380px; border: 0; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    padding: .8rem 1.75rem; border-radius: 8px; font-size: 1rem;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .cta { text-align: center; padding: 1rem 1.5rem 4rem; }
+  .cta p { color: var(--muted); margin: 0 0 1.5rem; }
+  footer { background: var(--navy); color: #8FA3B8; text-align: center; padding: 2rem 1.5rem; font-size: .9rem; }
+  @media (max-width: 48rem) {
+    .location-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="coinA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F0CE6B"/>
+            <stop offset="1" stop-color="#C08A2D"/>
+          </linearGradient>
+          <linearGradient id="coinB" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E8C15A"/>
+            <stop offset="1" stop-color="#A87622"/>
+          </linearGradient>
+        </defs>
+        <circle cx="14" cy="19" r="10.5" fill="url(#coinA)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="14" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <circle cx="24" cy="19" r="10.5" fill="url(#coinB)" stroke="#7A5417" stroke-width="1.5"/>
+        <circle cx="24" cy="19" r="7" fill="none" stroke="#7A5417" stroke-width="1" opacity=".55"/>
+        <path d="M22.5 15.5l1.5 1.5 3-3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+      </svg>
+      TwoCoins.ca
+    </a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="location.html" class="active">Location</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Where to find us</span>
+    <h1>Based in <span class="hl">Ottawa</span>, working everywhere.</h1>
+    <p class="lede">TwoCoins.ca is headquartered in Canada's capital — serving clients across the country and remotely worldwide.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="location-grid">
+    <div class="location-card">
+      <h2>Our location</h2>
+      <p class="address">Ottawa, Ontario<br>Canada</p>
+      <p>From the heart of Ottawa, we work with organizations across Canada — on-site in the National Capital Region and remotely everywhere else.</p>
+      <p>Whether you need hands-on architecture workshops, a cloud migration led start to finish, or ongoing advisory, distance is never a barrier.</p>
+    </div>
+    <div class="map-wrap">
+      <iframe title="Map of Ottawa, Ontario, Canada" src="https://www.openstreetmap.org/export/embed.html?bbox=-76.05%2C45.25%2C-75.45%2C45.55&amp;layer=mapnik&amp;marker=45.4215%2C-75.6972" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <p>Have a project in mind? Let's talk about where you're headed.</p>
+  <a class="btn btn-primary" href="mailto:twocoins.ca@gmail.com">twocoins.ca@gmail.com</a>
+</div>
+
+<footer>
+  © 2026 TwoCoins.ca · Cloud · AI · Zero-Trust Security
+</footer>
+
+</body>
+</html>
